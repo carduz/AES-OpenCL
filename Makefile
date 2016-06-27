@@ -12,7 +12,7 @@ CPPFLAGS=
 CFLAGS=		-std=c99 -O3 -Wno-deprecated-declarations
 LDFLAGS=	$(LIBOPENCL)
 
-LIBNAME=
+LIBNAME= opencl
 
 LIBOBJ=		opencl.o
 
@@ -36,7 +36,7 @@ clean:
 	rm -f $(BENCHMARKS)
 
 Benchmark-OpenCL: main.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $^
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(LIBNAME) -o $@ $^
 
 # dependency
 opencl.c: opencl.h

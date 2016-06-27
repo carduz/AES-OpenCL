@@ -34,6 +34,8 @@
 
 static int opencl_init();
 
+#define OPENCLDIR "."
+
 // helper macros
 
 #define BLOCK_CIPHER_generic(nid,keylen,blocksize,ivlen,nmode,mode,MODE,flags) \

@@ -39,11 +39,7 @@
 #include <string.h>
 #include <assert.h>
 
-#ifdef __APPLE__
-#include <OpenCL/OpenCL.h>
-#else
 #include <CL/opencl.h>
-#endif
 
 #include "opencl.h"
 
