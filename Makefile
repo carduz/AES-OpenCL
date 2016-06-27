@@ -1,6 +1,4 @@
 # modify the following path before building
-OPENCLDIR=	/System/Library/OpenSSL/opencl
-ENGINEDIR=	/usr/lib/openssl/engines
 OPENCLLIB= /usr/lib/x86_64-linux-gnu/libOpenCL.so.1
 
 
@@ -21,7 +19,7 @@ LIBOBJ=		opencl.o
 SOURCES= 	opencl.c
 HEADERS= 	opencl.h
 
-BENCHMARKS=	Benchmark-OpenSSL Benchmark-OpenCL
+BENCHMARKS=	Benchmark-OpenCL
 
 all: $(LIBNAME) $(BENCHMARKS)
 
@@ -37,11 +35,8 @@ clean:
 	rm -f *.o *.dylib
 	rm -f $(BENCHMARKS)
 
-Benchmark-OpenSSL: main.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $^
-
 Benchmark-OpenCL: main.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -DOPENCL_ENGINE=\"$(ENGINEDIR)/$(LIBNAME)\" $(LDFLAGS) -o $@ $^
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
 # dependency
 opencl.c: opencl.h
