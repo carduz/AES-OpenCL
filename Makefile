@@ -2,22 +2,32 @@
 CC=gcc
 LD=gcc
 
-CPPFLAGS=
-CFLAGS=		-fpic -fPIC -fpie -fPIE -std=c99 -O2 -Wno-deprecated-declarations
-LDFLAGS=	/usr/lib/x86_64-linux-gnu/libOpenCL.so.1 -lcrypto -g
+LIBNAME := libaes.so
 
-SRCS := $(wildcard *.c)
-OBJS := $(patsubst %.c,%.o,$(SRCS))
+CPPFLAGS=	-DOPENCL_ENGINE="$(LIBNAME)"
+CFLAGS=		-fpic -fPIC -fpie -fPIE -std=c99 -O2 -Wno-deprecated-declarations -g
+LDFLAGS=	/usr/lib/x86_64-linux-gnu/libOpenCL.so.1 -lcrypto
+
+PORG_SRCS := main.c
+PROG_OBJS := $(patsubst %.c,%.o,$(PROG_SRCS))
 PROG := Benchmark-OpenCL
+
+LIB_SRCS := opencl.c
+LIB_OBJS := $(patsubst %.c,%.o,$(LIB_SRCS))
 
 all: $(PROG)
 
-$(PROG): $(OBJS)
+$(PROG): $(PROG_OBJS)
 	$(LD) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+$(LIBNAME): $(LIB_OBJS)
+	$(LD) $(CFLAGS) -shared -Wl,-soname,$(LIBNAME) -o $@ $^
+
+$(PROG): $(LIBNAME)
 
 clean:
 	rm -f *.o *.dylib
-	rm -f $(PROG)
+	rm -f $(PROG) $(LIBNAME)
 
 # dependency
 %.c: %.o
