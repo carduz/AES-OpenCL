@@ -29,6 +29,5 @@ clean:
 	rm -f *.o *.dylib
 	rm -f $(PROG) $(LIBNAME)
 
-# dependency
-%.c: %.o
-	$(CC) $(CPPFLAGS) $(CFLAGS)
+%.o: %.c
+	$(CC) -c -o $@ $(CPPFLAGS) $(CFLAGS) $<
