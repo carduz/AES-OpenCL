@@ -4,7 +4,7 @@ LD=gcc
 
 CPPFLAGS=
 CFLAGS=		-fpic -fPIC -fpie -fPIE -std=c99 -O2 -Wno-deprecated-declarations
-LDFLAGS=	/usr/lib/x86_64-linux-gnu/libOpenCL.so.1 -lcrypto
+LDFLAGS=	/usr/lib/x86_64-linux-gnu/libOpenCL.so.1 -lcrypto -g
 
 SRCS := $(wildcard *.c)
 OBJS := $(patsubst %.c,%.o,$(SRCS))

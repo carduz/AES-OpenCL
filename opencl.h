@@ -32,7 +32,7 @@
 #ifndef OpenSSL_eng_opencl_h
 #define OpenSSL_eng_opencl_h
 
-static int opencl_init();
+//static int opencl_init();
 
 #define OPENCLDIR "."
 

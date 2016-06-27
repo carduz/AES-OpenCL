@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include <openssl/engine.h>
+#include <openssl/aes.h>
+
 #include <sys/time.h>
 
 #include "opencl.h"
@@ -20,15 +23,18 @@ void run(const char *name, unsigned char *buf, int len) {
     struct timeval start, end;
     double total_time, throughput;
 
-    //EVP_CIPHER *cipher = (EVP_CIPHER *) EVP_get_cipherbyname("aes-256-ecb");
+    EVP_CIPHER_CTX ctx;
+    EVP_CIPHER_CTX_init(&ctx);
 
-    //EVP_CipherInit_ex(&ctx, cipher, NULL, key, NULL, 1);
+    EVP_CIPHER *cipher = (EVP_CIPHER *) EVP_get_cipherbyname("aes-256-ecb");
+
+    EVP_CipherInit_ex(&ctx, cipher, NULL, key, NULL, 1);
 
     gettimeofday(&start, NULL);
     for (int i = 0; i < pass; i++) {
         fprintf(stderr, "%s: Pass %d/%d\n", name, i + 1, pass);
         // note we cannot run multiple pass on the same buffer, the CPU will cache it! (smart bastards at Intel)
-       // EVP_CipherUpdate(&ctx, buf + i * len, &outlen, buf, len);
+        EVP_CipherUpdate(&ctx, buf + i * len, &outlen, buf, len);
         if (len != outlen) {
             fprintf(stderr, "Fatal error: incorrect output size.\n");
         }
@@ -39,10 +45,12 @@ void run(const char *name, unsigned char *buf, int len) {
     throughput = TOTAL_LEN * 8 / total_time / 1000000;
     printf("%s: %u-byte blocks, %lubytes in %f s, Throughput: %fMbps\n", name, len, TOTAL_LEN, total_time, throughput);
 
+
+    EVP_CIPHER_CTX_cleanup(&ctx);
 }
 
 int main(int argc, char **argv) {
-   // OpenSSL_add_all_algorithms();
+    OpenSSL_add_all_algorithms();
 
     int len = 128 * MB;
     if (argc > 1) {
@@ -55,7 +63,7 @@ int main(int argc, char **argv) {
     }
 
     //ENGINE_load_builtin_engines();
-/*#ifdef OPENCL_ENGINE
+#ifdef OPENCL_ENGINE
     ENGINE *e = ENGINE_by_id("dynamic");
 	if (!ENGINE_ctrl_cmd_string(e, "SO_PATH", OPENCL_ENGINE, 0) ||
 		!ENGINE_ctrl_cmd_string(e, "LOAD", NULL, 0)) {
@@ -63,7 +71,7 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 	ENGINE_set_default(e, ENGINE_METHOD_ALL);
-#endif*/
+#endif
 
     //opencl_init();
 
