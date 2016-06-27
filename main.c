@@ -4,8 +4,7 @@
 
 #include <sys/time.h>
 
-#include <openssl/evp.h>
-#include <openssl/engine.h>
+#include "opencl.h"
 
 #define MB			(1024 * 1024)
 #define TOTAL_LEN	(1024UL * MB)
@@ -65,6 +64,8 @@ int main(int argc, char **argv) {
 	}
 	ENGINE_set_default(e, ENGINE_METHOD_ALL);
 #endif*/
+
+    //opencl_init();
 
     run(argv[0], buf, len);
 

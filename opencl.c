@@ -93,7 +93,8 @@ static size_t local_work_size = 128;
 static cl_mem buffer_state;
 static cl_mem buffer_roundkeys;
 
-static int opencl_init(ENGINE *e) {
+static int opencl_init() {
+    ENGINE *e;
     cl_int err = 0;
     cl_uint numPlatforms;
 

@@ -32,6 +32,8 @@
 #ifndef OpenSSL_eng_opencl_h
 #define OpenSSL_eng_opencl_h
 
+static int opencl_init();
+
 // helper macros
 
 #define BLOCK_CIPHER_generic(nid,keylen,blocksize,ivlen,nmode,mode,MODE,flags) \

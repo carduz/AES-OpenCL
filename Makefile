@@ -10,7 +10,7 @@ LD=			cc
 
 CPPFLAGS=
 CFLAGS=		-std=c99 -O3 -Wno-deprecated-declarations
-LDFLAGS=	$(LIBOPENCL) -lcrypto
+LDFLAGS=	$(LIBOPENCL)
 
 LIBNAME=
 
