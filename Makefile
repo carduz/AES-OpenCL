@@ -1,42 +1,24 @@
 # modify the following path before building
-OPENCLLIB= /usr/lib/x86_64-linux-gnu/libOpenCL.so.1
-
-
-LIBOPENCL=-L$(OPENCLLIB)
-
-
-CC= 		gcc
-LD=			cc
+CC=gcc
+LD=gcc
 
 CPPFLAGS=
-CFLAGS=		-std=c99 -O3 -Wno-deprecated-declarations
-LDFLAGS=	$(LIBOPENCL)
+CFLAGS=		-fpic -fPIC -fpie -fPIE -std=c99 -O2 -Wno-deprecated-declarations
+LDFLAGS=	/usr/lib/x86_64-linux-gnu/libOpenCL.so.1 -lcrypto
 
-LIBNAME= opencl
+SRCS := $(wildcard *.c)
+OBJS := $(patsubst %.c,%.o,$(SRCS))
+PROG := Benchmark-OpenCL
 
-LIBOBJ=		opencl.o
+all: $(PROG)
 
-SOURCES= 	opencl.c
-HEADERS= 	opencl.h
-
-BENCHMARKS=	Benchmark-OpenCL
-
-all: $(LIBNAME) $(BENCHMARKS)
-
-$(LIBNAME): $(LIBOBJ)
-	$(LD) -shared -Wl,-soname,$(LIBNAME) $(LDFLAGS) -o $(LIBNAME) $(LIBOBJ)
-
-
-
-$(LIBOBJ): $(SOURCES) $(HEADERS)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $(LIBOBJ) $(SOURCES)
+$(PROG): $(OBJS)
+	$(LD) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 clean:
 	rm -f *.o *.dylib
-	rm -f $(BENCHMARKS)
-
-Benchmark-OpenCL: main.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(LIBNAME) -o $@ $^
+	rm -f $(PROG)
 
 # dependency
-opencl.c: opencl.h
+%.c: %.o
+	$(CC) $(CPPFLAGS) $(CFLAGS)
