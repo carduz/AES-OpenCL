@@ -48,3 +48,7 @@ fabric.properties
 # .idea/misc.xml 
 # *.ipr
 
+
+
+## C ##
+*.o
