@@ -4,6 +4,7 @@
 
 #include <openssl/engine.h>
 #include <openssl/aes.h>
+#include <openssl/err.h>
 
 #include <sys/time.h>
 
@@ -51,6 +52,8 @@ void run(const char *name, unsigned char *buf, int len) {
 
 int main(int argc, char **argv) {
     OpenSSL_add_all_algorithms();
+    ERR_clear_error();
+    long int err;
 
     int len = 128 * MB;
     if (argc > 1) {
@@ -62,21 +65,27 @@ int main(int argc, char **argv) {
         fprintf(stderr, "Error Allocating Memory");
     }
 
-    //ENGINE_load_builtin_engines();
+    ENGINE_load_builtin_engines();
 #ifdef OPENCL_ENGINE
     ENGINE *e = ENGINE_by_id("dynamic");
+    if(!e)
+        fprintf(stderr, "Failed to load OpenCL engine (1)!\n");
+
 	if (!ENGINE_ctrl_cmd_string(e, "SO_PATH", OPENCL_ENGINE, 0) ||
 		!ENGINE_ctrl_cmd_string(e, "LOAD", NULL, 0)) {
-		fprintf(stderr, "Failed to load OpenCL engine!\n");
+		err = ERR_get_error();
+		printf("Error: %ld\n", err);
+		printf("Error: %s\n", ERR_error_string(err, NULL));
+		printf("Error: %s\n", ERR_reason_error_string(err));
+		fprintf(stderr, "Failed to load OpenCL engine (2)!\n");
 		return -1;
 	}
 	ENGINE_set_default(e, ENGINE_METHOD_ALL);
-#endif
 
-    //opencl_init();
 
     run(argv[0], buf, len);
 
+#endif
     free(buf);
 
     return 0;
