@@ -21,7 +21,7 @@ $(PROG): $(PROG_OBJS)
 	$(LD) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(LIBNAME): $(LIB_OBJS)
-	$(LD) $(CFLAGS) -shared -Wl,-soname,$(LIBNAME) -o $@ $^
+	$(LD) $(CFLAGS) -Wl,--trace -shared -Wl,-soname,$(LIBNAME) -o $@ $^
 
 $(PROG): $(LIBNAME)
 
