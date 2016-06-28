@@ -189,6 +189,8 @@ static int opencl_init(ENGINE *e) {
         return 0;
     }
 
+    printf("init2");
+
     return 1;
 }
 

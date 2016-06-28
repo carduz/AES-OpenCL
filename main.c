@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
     if(!e)
         fprintf(stderr, "Failed to load OpenCL engine (1)!\n");
 
-	if (!ENGINE_ctrl_cmd_string(e, "SO_PATH", OPENCL_ENGINE, 0) ||
+	if (!ENGINE_ctrl_cmd_string(e, "SO_PATH", "/home/claudio/git/aes-opencl/libaes.so", 0) ||
 		!ENGINE_ctrl_cmd_string(e, "LOAD", NULL, 0)) {
 		err = ERR_get_error();
 		//http://home.kpn.nl/ojb-hamster/EnWIP/EnWeb/html/erro9r1s.htm - error obtained (reason) = 103
