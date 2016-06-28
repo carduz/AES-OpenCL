@@ -23,9 +23,6 @@ $(PROG): $(PROG_OBJS) $(LIBNAME)
 $(LIBNAME): $(LIB_OBJS)
 	$(LD) $(CFLAGS) -shared -Wl,-soname,$(LIBNAME) -o $@ $^
 
-libhello.so: hello.o
-	$(LD) $(CFLAGS) -shared -Wl,-soname,libhello.so -o $@ $^
-
 clean:
 	rm -f *.o *.dylib
 	rm -f $(PROG) $(LIBNAME) hello
