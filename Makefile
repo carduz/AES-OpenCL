@@ -37,3 +37,15 @@ clean:
 
 %.o: %.c
 	$(CC) -c -o $@ $(CPPFLAGS) $(CFLAGS) $<
+	
+bench: SHELL:=/bin/bash
+bench: $(PROG_NAME)
+	@for mem in 1 2 4; do \
+	  for wi in 16 64 128 256; do \
+	    echo "MEMORY: $$mem GB"; echo "WORK_ITEMS: $$wi"; \
+	    BENCH_TOTAL_MEMORY="$$(($$mem * 1024))" \
+	    BENCH_CHUNK_SIZE="$$(($$mem * 32))" \
+	    OPENSSL_OPENCL_LOCAL_WORK_SIZE="$$wi" \
+	    ./$(PROG_NAME); done; done;
+	
+.PHONY: bench	
