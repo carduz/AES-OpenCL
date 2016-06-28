@@ -313,18 +313,34 @@ static const char *engine_opencl_name = "OpenCL support";
 /* This internal function is used by ENGINE_opencl() and possibly by the
  * "dynamic" ENGINE support too */
 static int bind_helper(ENGINE *e) {
-    if(!ENGINE_set_id(e, engine_opencl_id)
-       || !ENGINE_set_name(e, engine_opencl_name)
-       || !ENGINE_set_ciphers(e, opencl_ciphers)
-       || !ENGINE_set_init_function(e, opencl_init)
-       || !ENGINE_set_finish_function(e, opencl_finish)) {
-        return 0;
-    }
+  int ret = 0;
 
-    /* openssl_load_error_strings(); */
+  if (!ENGINE_set_id(e, engine_opencl_id)) {
+    fprintf(stderr, "ENGINE_set_id failed\n");
+    goto end;
+  }
+  if (!ENGINE_set_name(e, engine_opencl_name)) {
+    printf("ENGINE_set_name failed\n");
+    goto end;
+  }
+  if (!ENGINE_set_ciphers(e, opencl_ciphers)) {
+    printf("ENGINE_set_ciphers failed\n");
+    goto end;
+  }
+  if (!ENGINE_set_init_function(e, opencl_init)) {
+    printf("ENGINE_set_init_function failed\n");
+    goto end;
+  }
+  if (!ENGINE_set_finish_function(e, opencl_finish)) {
+    printf("ENGINE_set_finish_function failed\n");
+    goto end;
+  }
 
-    return 1;
+  ret = 1;
+ end:
+  return ret;
 }
+
 
 
 static ENGINE *engine_opencl(void) {
