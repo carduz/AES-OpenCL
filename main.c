@@ -50,6 +50,13 @@ void run(const char *name, unsigned char *buf, int len) {
     EVP_CIPHER_CTX_cleanup(&ctx);
 }
 
+static void put_local_work_size(char *arg) {
+  char envVar[255];
+  
+  snprintf(envVar, 255, "OPENSSL_OPENCL_LOCAL_WORK_SIZE=%s", arg);
+  putenv(envVar);
+}
+
 int main(int argc, char **argv) {
     OpenSSL_add_all_algorithms();
     ERR_clear_error();
@@ -83,12 +90,10 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 	ENGINE_set_default(e, ENGINE_METHOD_ALL);
-
-    char envVar[100] =  "";
-    strcat(envVar,"OPENSSL_OPENCL_LOCAL_WORK_SIZE=");
-    strcat(envVar,argv[2]);
-    if(argc == 3)
-        putenv(envVar);
+    
+    if(argc >= 3) {
+      put_local_work_size(argv[2]);
+    }
 
     run(argv[0], buf, len);
 
