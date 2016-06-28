@@ -189,6 +189,7 @@ static int opencl_init(ENGINE *e) {
         return 0;
     }
 
+    printf("Items used: %d\n", local_work_size);
     printf("init2");
 
     return 1;
@@ -216,8 +217,8 @@ static int opencl_aes_ecb_cipher(EVP_CIPHER_CTX *ctx, unsigned char *out, const 
     size_t local[1] = {local_work_size};
     size_t global[1] = {(len / 16 + local[0] - 1) / local[0] * local[0]};
 
-    //fprintf(stderr, "Global Work Size: %d\n", global[0]);
-    //fprintf(stderr, "Len: %d\n", len);
+    fprintf(stderr, "Global Work Size: %ld\n", global[0]);
+    fprintf(stderr, "Len: %ld\n", len);
 
     err = clSetKernelArg(kernel, 2, sizeof(dat->ks.rounds), &dat->ks.rounds);
     if (err != CL_SUCCESS) {

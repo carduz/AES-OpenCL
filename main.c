@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 
@@ -8,10 +9,9 @@
 
 #include <sys/time.h>
 
-#include "opencl.h"
 
 #define MB			(1024 * 1024)
-#define TOTAL_LEN	(1024UL * MB)
+#define TOTAL_LEN	(1* 1024UL * MB)
 
 void run(const char *name, unsigned char *buf, int len) {
     int pass = TOTAL_LEN / len;
@@ -84,6 +84,11 @@ int main(int argc, char **argv) {
 	}
 	ENGINE_set_default(e, ENGINE_METHOD_ALL);
 
+    char envVar[100] =  "";
+    strcat(envVar,"OPENSSL_OPENCL_LOCAL_WORK_SIZE=");
+    strcat(envVar,argv[2]);
+    if(argc == 3)
+        putenv(envVar);
 
     run(argv[0], buf, len);
 
