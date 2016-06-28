@@ -25,9 +25,12 @@ $(LIBNAME): $(LIB_OBJS)
 
 $(PROG): $(LIBNAME)
 
+hello: hello.o
+	$(LD) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
 clean:
 	rm -f *.o *.dylib
-	rm -f $(PROG) $(LIBNAME)
+	rm -f $(PROG) $(LIBNAME) hello
 
 %.o: %.c
 	$(CC) -c -o $@ $(CPPFLAGS) $(CFLAGS) $<
