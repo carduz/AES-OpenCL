@@ -66,6 +66,7 @@ int main(int argc, char **argv) {
     }
 
     ENGINE_load_builtin_engines();
+    //OpenSSL_add_all_algorithms();
 #ifdef OPENCL_ENGINE
     ENGINE *e = ENGINE_by_id("dynamic");
     if(!e)
@@ -74,6 +75,7 @@ int main(int argc, char **argv) {
 	if (!ENGINE_ctrl_cmd_string(e, "SO_PATH", OPENCL_ENGINE, 0) ||
 		!ENGINE_ctrl_cmd_string(e, "LOAD", NULL, 0)) {
 		err = ERR_get_error();
+		//http://home.kpn.nl/ojb-hamster/EnWIP/EnWeb/html/erro9r1s.htm - error obtained (reason) = 103
 		printf("Error: %ld\n", err);
 		printf("Error: %s\n", ERR_error_string(err, NULL));
 		printf("Error: %s\n", ERR_reason_error_string(err));
