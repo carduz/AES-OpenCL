@@ -53,3 +53,4 @@ fabric.properties
 ## C ##
 *.o
 Benchmark-OpenCL
+*.so
