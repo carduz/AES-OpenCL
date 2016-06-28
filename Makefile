@@ -6,7 +6,7 @@ LIBNAME := libaes.so
 
 CPPFLAGS=	-DOPENCL_ENGINE="$(LIBNAME)"
 CFLAGS=		-fpic -fPIC -fpie -fPIE -std=c99 -O2 -Wno-deprecated-declarations -g
-LDFLAGS=	/usr/lib/x86_64-linux-gnu/libOpenCL.so.1 -lcrypto
+LDFLAGS=	-Wl,--trace /usr/lib/x86_64-linux-gnu/libOpenCL.so.1 -lcrypto
 
 PORG_SRCS := main.c
 PROG_OBJS := $(patsubst %.c,%.o,$(PROG_SRCS))
