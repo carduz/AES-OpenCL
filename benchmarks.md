@@ -28,3 +28,5 @@ Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 12.874743 s, Through
 ### 16 work items
 Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 8.996619 s, Throughput: 3819.183447Mbps
 
+# Observations
+* We can see that the throughput increase a little with the data
