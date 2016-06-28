@@ -2,7 +2,9 @@
 CC=gcc
 LD=gcc
 
-CPPFLAGS =	-DOPENCL_ENGINE="\"$(LIBNAME)\""
+PWD := $(shell pwd)
+
+CPPFLAGS =	-DOPENCL_ENGINE="\"$(PWD)/$(LIB_NAME)\""
 CFLAGS   :=	-fPIC -std=c99 -O2 -Wall -Wno-deprecated-declarations -g
 
 ifeq ($(wildcard /usr/lib/x86_64-linux-gnu/libOpenCL.so.1),)
