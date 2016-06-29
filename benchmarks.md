@@ -29,6 +29,7 @@ Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 12.874743 s, Through
 Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 8.996619 s, Throughput: 3819.183447Mbps
 
 # Radeon HD 7870 GHz Edition
+Max execution units = 256
 
 MEMORY: 1 GB  
 WORK_ITEMS: 16  
