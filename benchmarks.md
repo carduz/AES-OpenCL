@@ -28,5 +28,53 @@ Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 12.874743 s, Through
 ### 16 work items
 Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 8.996619 s, Throughput: 3819.183447Mbps
 
-# Observations
-* We can see that the throughput increase a little with the data
+# Radeon HD 7870 GHz Edition
+
+MEMORY: 1 GB  
+WORK_ITEMS: 16  
+initItems used: 16  
+init2./Benchmark-OpenCL: 33554432-byte blocks, 1073741824bytes in 1.971263 s, Throughput: 4357.579172Mbps  
+MEMORY: 1 GB  
+WORK_ITEMS: 64  
+initItems used: 64  
+init2./Benchmark-OpenCL: 33554432-byte blocks, 1073741824bytes in 2.006703 s, Throughput: 4280.620795Mbps  
+MEMORY: 1 GB  
+WORK_ITEMS: 128  
+initItems used: 128  
+init2./Benchmark-OpenCL: 33554432-byte blocks, 1073741824bytes in 2.000216 s, Throughput: 4294.503490Mbps  
+MEMORY: 1 GB  
+WORK_ITEMS: 256  
+initItems used: 256  
+init2./Benchmark-OpenCL: 33554432-byte blocks, 1073741824bytes in 2.006425 s, Throughput: 4281.213896Mbps  
+MEMORY: 2 GB  
+WORK_ITEMS: 16  
+initItems used: 16  
+init2./Benchmark-OpenCL: 67108864-byte blocks, 2147483648bytes in 3.863936 s, Throughput: 4446.209560Mbps  
+MEMORY: 2 GB  
+WORK_ITEMS: 64  
+initItems used: 64  
+init2./Benchmark-OpenCL: 67108864-byte blocks, 2147483648bytes in 3.970503 s, Throughput: 4326.874752Mbps  
+MEMORY: 2 GB  
+WORK_ITEMS: 128  
+initItems used: 128  
+init2./Benchmark-OpenCL: 67108864-byte blocks, 2147483648bytes in 3.945033 s, Throughput: 4354.810006Mbps  
+MEMORY: 2 GB  
+WORK_ITEMS: 256  
+initItems used: 256  
+init2./Benchmark-OpenCL: 67108864-byte blocks, 2147483648bytes in 3.947372 s, Throughput: 4352.229581Mbps  
+MEMORY: 4 GB  
+WORK_ITEMS: 16  
+initItems used: 16  
+init2./Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 7.607002 s, Throughput: 4516.856755Mbps  
+MEMORY: 4 GB  
+WORK_ITEMS: 64  
+initItems used: 64  
+init2./Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 7.791391 s, Throughput: 4409.962017Mbps  
+MEMORY: 4 GB  
+WORK_ITEMS: 128  
+initItems used: 128  
+init2./Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 7.771422 s, Throughput: 4421.293602Mbps  
+MEMORY: 4 GB  
+WORK_ITEMS: 256  
+initItems used: 256  
+init2./Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 7.792957 s, Throughput: 4409.075832Mbps  
