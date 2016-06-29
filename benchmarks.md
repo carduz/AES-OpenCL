@@ -36,6 +36,10 @@ WORK_ITEMS: 16
 initItems used: 16  
 init2./Benchmark-OpenCL: 33554432-byte blocks, 1073741824bytes in 1.971263 s, Throughput: 4357.579172Mbps  
 MEMORY: 1 GB  
+WORK_ITEMS: 32  
+initItems used: 32  
+init2./Benchmark-OpenCL: 33554432-byte blocks, 1073741824bytes in 1.392437 s, Throughput: 6168.993349Mbps  
+MEMORY: 1 GB  
 WORK_ITEMS: 64  
 initItems used: 64  
 init2./Benchmark-OpenCL: 33554432-byte blocks, 1073741824bytes in 2.006703 s, Throughput: 4280.620795Mbps  
@@ -52,6 +56,10 @@ WORK_ITEMS: 16
 initItems used: 16  
 init2./Benchmark-OpenCL: 67108864-byte blocks, 2147483648bytes in 3.863936 s, Throughput: 4446.209560Mbps  
 MEMORY: 2 GB  
+WORK_ITEMS: 32  
+initItems used: 32  
+init2./Benchmark-OpenCL: 67108864-byte blocks, 2147483648bytes in 2.734977 s, Throughput: 6281.540643Mbps  
+MEMORY: 2 GB  
 WORK_ITEMS: 64  
 initItems used: 64  
 init2./Benchmark-OpenCL: 67108864-byte blocks, 2147483648bytes in 3.970503 s, Throughput: 4326.874752Mbps  
@@ -67,6 +75,10 @@ MEMORY: 4 GB
 WORK_ITEMS: 16  
 initItems used: 16  
 init2./Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 7.607002 s, Throughput: 4516.856755Mbps  
+MEMORY: 4 GB  
+WORK_ITEMS: 32  
+initItems used: 32  
+init2./Benchmark-OpenCL: 134217728-byte blocks, 4294967296bytes in 5.250765 s, Throughput: 6543.758551Mbps  
 MEMORY: 4 GB  
 WORK_ITEMS: 64  
 initItems used: 64  
