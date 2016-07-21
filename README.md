@@ -1,6 +1,6 @@
 # aes-opencl
 
-Aes opencl implementation for a polimi project
+Aes opencl implementation for a polimi project (advaced computer architectures)
 
 We have executed some [benchmarks](benchmarks.md)
 
